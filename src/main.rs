@@ -9,6 +9,7 @@ use serenity::{
     prelude::TypeMapKey,
 };
 use std::collections::HashSet;
+use std::env;
 
 #[group]
 #[commands(list_games, add_game)]
@@ -31,13 +32,12 @@ async fn main() {
         .configure(|c| c.prefix("~"))
         .group(&GENERAL_GROUP);
 
-    let mut client = Client::builder(String::from(
-        "TOKEN GOES HERE",
-    ))
-    .event_handler(Handler)
-    .framework(framework)
-    .await
-    .expect("Error creating client");
+    let mut client =
+        Client::builder(env::var("DISCORD_TOKEN").expect("No DISCORD_TOKEN has been set"))
+            .event_handler(Handler)
+            .framework(framework)
+            .await
+            .expect("Error creating client");
 
     let mut set = HashSet::new();
     set.insert(String::from("World of Warcraft"));
