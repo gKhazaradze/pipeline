@@ -1,0 +1,9 @@
+[package]
+authors = ["Kuba Clark <jakub.clark@protonmail.com>"]
+edition = "2018"
+name = "pipe-bot"
+version = "0.1.0"
+
+[dependencies]
+serenity = "*"
+tokio = { version = "0.2", features = ["full"]}
